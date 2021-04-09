@@ -1,52 +1,55 @@
 // 
-// products page step
-// productsPage-step.js
+// products collection step
+// productsCollection-step.js
 // 
 
-const { Given, When, Then } = require('cucumber')
+const { Given, When, Then } = require('cucumber');
+const data = require('../config/data/userData')
+const loginPage = require('../pages/loginPage');
+const homePage = require('../pages/homePage');
+const productsPage = require('../pages/productsPage');
 
 
 Given(/^I am logged in as regular user$/, () => {
-	return true;
+	loginPage.navigateToLogin()
+	loginPage.login(data.UserEmail, data.UserPassword)
+	loginPage.chooseUser()
 });
 
 When(/^Open products app$/, () => {
-	return true;
-});
-
-When(/^Click on Collections tab$/, () => {
-	return true;
+	homePage.chooseProducts()
 });
 
 When(/^Click on Add Collection$/, () => {
-	return true;
+	productsPage.addCollection()
 });
 
 Then(/^I expect to see Main and Desciption panel are loaded$/, () => {
-	return true;
+	productsPage.mainAndDescriptionTab()
 });
 
 Then(/^Main panel is expanded$/, () => {
-	return true;
+	productsPage.checkIfMainPanelExpanded()
 });
 
 Then(/^Rest of the pannel are collapsed$/, () => {
-	return true;
+	productsPage.checkIfDescriptionPanelCollapsed()
 });
 
 When(/^Upload an image$/, () => {
-	return true;
+	productsPage.addMedia()
 });
 
 Then(/^Image is visible$/, () => {
-	return true;
+    productsPage.checkImageVisibility()
 });
 
 When(/^Click on Save$/, () => {
-	return true;
+	productsPage.clickOnSave()
 });
 
 Then(/^Required fields are highlited in red and visible$/, () => {
-	return true;
+	productsPage.checkRequiredTitleColor()
+	productsPage.checkRequiredException()
 });
 
