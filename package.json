@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Filipv95/payever-qa-automation#readme",
   "dependencies": {
-    "@wdio/cli": "^7.3.1"
+    "@wdio/cli": "^7.3.1",
+    "cucumber": "^7.0.0-rc.0",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "@wdio/cucumber-framework": "^7.3.1",
