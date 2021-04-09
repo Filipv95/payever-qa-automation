@@ -1,8 +1,14 @@
 const url = require('./config/url.js')
 const ENV = process.env.ENV
+const TAG = process.env.TAG
 
 if(!ENV || !['dev', 'staging', 'prod'].includes(ENV)){
     console.log('Please use fallowing format to run the test: ENV=dev|staging|prod');
+    process.exit()
+}
+
+if(!TAG || !['@smoke', '@acceptance', '@regression', '@performance', '@WIP', '@trial'].includes(TAG)){
+    console.log('Please use fallowing format to run the test: TAG=@smoke|@acceptance|@regression|@performance|@WIP|@trial');
     process.exit()
 }
 
@@ -72,8 +78,8 @@ exports.config = {
         'goog:chromeOptions': {
             // to run chrome headless the following flags are required
             // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
-            // args: ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1920x1080'],
-            args: ['--kiosk'],
+            args: ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--window-size=1920x1080'],
+            // args: ['--kiosk'],
 
         }
         // If outputDir is provided WebdriverIO can capture driver session logs
@@ -88,7 +94,7 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'error',
     //
     // Set specific log levels per logger
     // loggers:
@@ -177,7 +183,7 @@ exports.config = {
         // <boolean> fail if there are any undefined or pending steps
         strict: false,
         // <string> (expression) only execute the features or scenarios with tags matching the expression
-        tagExpression: '',
+        tagExpression: TAG,
         // <number> timeout for step definitions
         timeout: 60000,
         // <boolean> Enable this config to treat undefined definitions as warnings.

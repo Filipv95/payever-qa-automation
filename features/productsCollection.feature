@@ -3,6 +3,7 @@
 # productsCollection.feature
 #
 
+@trial
 Feature: Add new collection in Products
 
     As a user
@@ -12,7 +13,6 @@ Feature: Add new collection in Products
 Background: Collection on Products application
     Given I am logged in as regular user
     When Open products app
-    And Click on Collections tab
     And Click on Add Collection
 
     Scenario: All panels are loaded
